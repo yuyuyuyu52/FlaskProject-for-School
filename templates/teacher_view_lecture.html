@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lecture View</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        p {
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #333;
+            margin-top: 30px;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        textarea,
+        input[type="submit"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        button[type="submit"] {
+            padding: 8px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        a {
+            text-decoration: none;
+            color: #4CAF50;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>{{ lecture.title }}</h1>
+    <p>{{ lecture.description }}</p>
+
+    <h2>Create Assignment</h2>
+    <form method="POST">
+        <input type="hidden" name="create_assignment" value="1">
+        <label for="assignment_title">Title:</label>
+        <input type="text" id="assignment_title" name="assignment_title" required>
+        <label for="assignment_description">Description:</label>
+        <textarea id="assignment_description" name="assignment_description" required></textarea>
+        <button type="submit">Create Assignment</button>
+    </form>
+
+    <h2>Assignments</h2>
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>View</th>
+        </tr>
+        {% for assignment in assignments %}
+            <tr>
+                <td>{{ assignment.title }}</td>
+                <td>{{ assignment.description }}</td>
+                <td><a href="{{ url_for('teacher_view_assignment', assignment_id=assignment.id) }}">View</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+</body>
+</html>

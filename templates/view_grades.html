@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Grades</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>Course</th>
+            <th>Lecture</th>
+            <th>Assignment</th>
+            <th>Teacher</th>
+            <th>Content</th>
+            <th>Grade</th>
+        </tr>
+        {% for grade in grades %}
+        <tr>
+            <td>{{ grade.course }}</td>
+            <td>{{ grade.lecture }}</td>
+            <td>{{ grade.assignment }}</td>
+            <td>{{ grade.teacher }}</td>
+            <td>{{ grade.content }}</td>
+            <td>{{ grade.grade }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

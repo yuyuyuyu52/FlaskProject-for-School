@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="dashboard-container">
+        <h1>Student Dashboard</h1>
+        <nav>
+            <ul>
+                <li><h2>Your Courses</h2></li>
+                {% for course in courses %}
+                <li><a href="{{ url_for('student_view_course', course_id=course.id) }}">{{ course.name }}</a></li>
+                {% endfor %}
+                <li><h2>All Courses</h2></li>
+                {% for course in all_courses %}
+                <li><a href="{{ url_for('apply_course', course_id=course.id) }}">Apply: {{ course.name }}</a></li>
+                {% endfor %}
+                <li><a href="{{ url_for('view_grades') }}">View Grades</a></li>
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            </ul>
+        </nav>
+    </div>
+</body>
+</html>

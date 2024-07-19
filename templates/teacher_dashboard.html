@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Teacher Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="dashboard-container">
+        <h1>Teacher Dashboard</h1>
+        <nav>
+            <ul>
+                {% for course in courses %}
+                <li><a href="{{ url_for('view_course', course_id=course.id) }}">{{ course.name }}</a></li>
+                {% endfor %}
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            </ul>
+        </nav>
+    </div>
+</body>
+</html>
